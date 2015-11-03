@@ -1,0 +1,73 @@
+body{
+	/* overflow-y:hidden; */
+
+}
+
+#startbutton{
+	width:290px;
+	height:160px;
+	border:5px solid steelblue;
+	border-radius:20px;
+	background-color:#fa2;
+	margin:200px auto;
+	margin-left:530px;
+	transition: background-color 0.5s , color 0.5s;
+	font:bold 25px Tahoma;
+}
+
+#startbutton:hover{
+	background-color:#fd5;
+	color:#444;
+}
+
+.board{
+	width:200px;
+	height:40px;
+	border:1px solid black;
+	float:left;
+	resize:none;
+}
+
+#showLevel{
+	margin-top:20%;
+	margin-left:7%;
+}
+
+aside{
+	margin-top:6%;
+	margin-left:7%;
+	
+}
+
+#nextBlock{
+	height:70%;
+	width:54%;
+	margin-top:-30%;
+	margin-left:22%;
+	/* margin-left:auto;
+	margin-right:auto; */
+}
+
+#score{
+	height:100px;
+	margin-top:25%;
+}
+
+#music{
+	margin-top:20%;
+}
+
+.nextBlock_sub{
+	width:35px;
+	height:35px;
+	border:1px solid black;
+	float:left;
+
+}
+
+.MusicPlayer{
+	float:left; 
+	margin-left:5.5%;
+	margin-top:2%;
+	display:none;
+}
