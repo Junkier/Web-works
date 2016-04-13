@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+<!-- 預設空間會在 /public 中，故路徑從 public 角度出發 -->
+	
+	<meta http-equiv=X-UA-Compatible content="IE=edge">
+    <title>輿情分析平台</title>
+    <meta name="generator" content="硬是愛數據應用" />
+    <link rel=icon href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+<!-- Bootstrap CSS-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+<!-- Our CSS -->
+
+	<link href="css/custom.css" rel="stylesheet">  
+	<link href="css/nv.d3.css"  rel="stylesheet">
+	<link href="css/Indices.css" rel="stylesheet"> 
+	<link href="css/jqcloud.css" rel="stylesheet">
+    
+<!-- ScrollDown CSS -->
+    <!-- <link href="css/dropdowns-enhancement.css" rel="stylesheet"> -->
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet">
+<!-- Time Selector CSS -->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<!-- Sticky-Footer CSS -->
+    <link href="css/sticky-footer.css" rel="stylesheet">
+	
+	
+<!-- jQuery -->
+	<script src="js/jquery-2.2.2.min.js"></script>
+	
+<!-- Our .js part I ^.< -->		
+
+	<!-- Every chart Function -->
+	<script src="js/chartQQ/forIndex1.js"></script> 
+	<script src="js/chartQQ/forIndex2.js"></script>
+	<script src="js/chartQQ/forIndex3.js"></script>
+	<script src="js/chartQQ/forIndex4.js"></script>
+	<script src="js/chartQQ/forIndex6.js"></script>
+	<script src="js/chartQQ/forIndex7.js"></script> 
+	<script src="js/chartQQ/forIndex8.js"></script>
+	
+	<!-- Main function -->
+	<script src="js/dosomething.js"></script>
+	
+  </head>
+  <body>
+<!-- header start -->
+    <nav class="navbar navbar-fixed-top navbar-inverse" role=navigation>
+        <div class="container-fluid">
+            <div class=navbar-header>
+                <button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar>
+                    <span class=sr-only>Toggle navigation</span>
+                    <span class=icon-bar></span>
+                    <span class=icon-bar></span>
+                    <span class=icon-bar></span>
+                </button>
+            <a class="navbar-brand" id="logo" href=#>
+                eyeSocial
+            </a>
+            </div>
+            <div id=navbar class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href=#><b>HOME</b></a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>SERVICE</b> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=#topic><b>TOPIC</b>(主題式)</a></li>
+                                <li><a href=#branding><b>BRANDING</b>(品牌式)</a></li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li><a href=#aboutus><b>ABOUT US</b></a></li>
+                    <li><a href=#register><b>REGISTER</b></a></li>
+                    <li><a href=#login><b>LOGIN</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- header end -->
+
+<!-- attr control start -->
+
+    <!-- attr search start -->
+        <div class="container-fluid">
+            <div class="row">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar>
+                            <span class=sr-only>Toggle navigation</span>
+                            <span class=icon-bar></span>
+                            <span class=icon-bar></span>
+                            <span class=icon-bar></span>
+                    </button>
+                </div>
+				
+                <div id="navbar" class="navbar-collapse">
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+								 <!-- {{! Here is hbs binding data space }}  -->
+                                <input type="text" id="user_word_here" class="form-control input" placeholder="搜尋關鍵議題..." name="keyword" value="小米姊"/>
+                                <span class="input-group-btn">
+									
+                                    <button class="btn btn-info btn" type="button" id="submitQQ"> 
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    <!-- attr search end -->
+    <!-- time control start -->
+                    <div class='col-xs-6 col-sm-6 col-md-2'>
+                        <div class="form-group">
+                            <div class='input-group date' id='start_timeQQ'>
+                                <input type='text' class="form-control" name="start_time"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+				
+                    <div class='col-xs-6 col-sm-6 col-md-2'>
+                        <div class="form-group">
+                            <div class='input-group date' id='end_timeQQ'>
+                                <input type='text' class="form-control" name="end_time"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    <!-- time control end -->
+
+    <!-- attr selectall start -->
+                <div class="btn-group">
+                    <button id="selectAll-all" class="btn btn-default">全選</button>
+                </div>
+    <!-- attr selectall end -->
+
+    <!-- attr social_media start -->
+                <div class="btn-group">
+                    <select id="social_media-nonSelectedText" multiple="multiple" style="display: none;" >
+                    </select>
+                </div>
+    <!-- attr social_media end -->
+
+    <!-- attr forum start -->
+                <div class="btn-group">
+                    <select id="forum-nonSelectedText" multiple="multiple" style="display: none;" >
+                    </select>
+                </div>
+    <!-- attr forum send -->
+
+    <!-- attr news start -->
+                <div class="btn-group">
+                    <select id="news-nonSelectedText" multiple="multiple" style="display: none;">
+                    </select>
+                </div>
+    <!-- attr news end-->
+
+    <!-- attr blog start-->
+                <div class="btn-group">
+                    <select id="blog-nonSelectedText" multiple="multiple" style="display: none;" >
+                    </select>
+                </div>
+    <!-- attr blog end -->
+            </div>
+        </div>
+   </div>
+<!-- attr social media end -->
+
+<!-- attr control end -->
+<!-- sidebar+view start -->
+    <!-- sidebar start -->
+        <div class="container-fluid">
+            <div class="row">
+            <!-- sidebar start -->
+                <div class="col-xs-12 col-sm-12 col-md-2" id="sidebar">
+					<ul class="nav nav-sidebar col-xs-12 col-md-12  col-sm-6" >
+                        <li class="topic_header"><span>主題式 <span class=sr-only>(current)</span></span>
+                            <li class="topic_content" show_Chart_QQ = "Index1 Index2 Index3">熱門文章</li>
+                            <li class="topic_content" show_Chart_QQ = "Index4">陣地轉移</li>
+                            <li class="topic_content" show_Chart_QQ = "Index6 Index7">正負評論</li>
+                            <li class="topic_content" show_Chart_QQ = "Index8">聲量追蹤</li>
+                            <li class="topic_content" show_Chart_QQ = "">關聯議題</li>
+                        </li>
+                    </ul>
+                    <!-- <ul class="nav nav-sidebar col-xs-6 col-sm-6 col-md-12">
+                        <li class="time_header"><span>時間軸（單位）<span class=sr-only>(current)</span></span>
+                            <li class="time_content">日（DAY）</li>
+                            <li class="time_content">週（WEEK）</li>
+                            <li class="time_content">月（MONTH）</li>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-10" id="iframe">
+					<div id = "showWord_OK"></div>
+				<!-- This is for Carousel -->
+                    <!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" > -->
+                    <!-- Indicators -->
+                        <!-- <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol> -->
+                    <!-- Wrapper for slides -->
+                <!-- charts start -->
+						 <!-- <div class="carousel-inner" role="listbox">  -->
+						<!-- first -->
+							  <!-- <div class="item active">
+								 <iframe src="http://www.w3schools.com/" style="" width="100%" height="580px" frameborder="0"></iframe> 
+								<div class="carousel-caption">
+									w3c school
+								</div>
+							</div>  --> 
+						<!-- second -->
+							 <!-- <div class="item">
+								 <iframe src="http://api.jquery.com/" style="" width="100%" height="580px" frameborder="0"></iframe> 
+								<div class="carousel-caption">
+									jquery api
+								</div>
+							</div>   -->
+						<!-- third -->
+							<!-- <div class="item">
+								<iframe src="https://kkbruce.tw/bs3" style="" width="100%" height="580" frameborder="0"></iframe> 
+								<div class="carousel-caption">
+									bootstrap
+								</div>
+							</div> -->
+						<!-- Our functionQQ -->
+							
+						 <!-- </div>  -->
+                    <!-- charts end -->
+                    <!-- </div> -->
+					<!-- TEST -->
+							<div class = "item Index1_Chart">
+								<button id="update-demo">Update</button> 
+							</div>
+							
+							<div class = "item Index2_Chart">
+								<div id="topWord"></div>
+								<div id="rankingTable"></div>
+							</div>
+							
+							<div class = "item Index3_Chart">
+								<div class = "BigBang_top">
+									<div class = "AuthorTop10"> for Author Top 10</div>
+									<div class = "Post_list"> for Post List</div>
+								</div>
+								<div class = "Bottom">
+									<div class = "Bottom_chartQQ" id="chart_postNumbers"> 
+										<svg> </svg>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class = "item Index4_Chart">
+								<div class = "StackedAreaChart" id="chart_field">
+									<svg></svg>
+								</div>
+								<div class = "StackedAreaChart" id="chart_source">
+									<svg></svg>
+								</div>
+							</div>
+							
+							<div class="item Index6_Chart">
+                                <div id="emo_count"></div>
+                            </div>
+							
+							<!-- <div style="border:1px solid black; height:500px;"> -->
+							<div class = "item Index7_Chart">
+                                <div  class = "Just_Virtualize" id = "chart_7_CaptainAmerican">
+								</div>
+								<div id = "chart_7_IronMan">
+								</div>
+								<div id = "chart_7_IronWoman">
+								</div>
+							</div>
+								<!-- <div id = "chart_7_IronMan">
+								</div>
+								<div id = "chart_7_IronWoman">
+								</div> -->
+                            <!-- </div>  -->
+							
+							<div class = "Index8_Chart" > 
+                                <div id="chart_8_QQ"></div>
+                            </div> 
+                <!-- Controls -->
+                    <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a> -->
+				</div>
+			</div>
+         </div>
+        <!-- </div> -->
+<!-- sidebar+view end -->
+
+<!-- footer start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="text-muted">
+                    Copyright © 2016
+                    <a href="insighteye.tw">INSIGHTEYE</a>
+                    . ALL RIGHTS RESERVED.
+                </p>
+            </div>
+        </footer>
+<!-- footer end -->
+
+
+<!-- Time Selector -->
+    <script type='text/javascript' src="js/moment.min.js"></script>
+    <script type='text/javascript' src="js/zh-tw.js"></script>
+
+<!-- BootStrap Plugin -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/bootstrap-datetimepicker.min.js"></script>
+	
+<!-- ScrollDown List  -->
+    <!-- <script type='text/javascript' src="js/dropdowns-enhancement.min.js"></script> -->
+    <script type='text/javascript' src="js/bootstrap-multiselect.js"></script>
+	
+<!-- Our .js part II ^.< -->	
+	<!-- for Chart -->
+	
+	<script src="js/jqcloud.min.js"></script>  <!-- I -->
+	<script src="js/highcharts.js"></script>   <!-- II -->
+	<script src="js/exporting.js"></script>    <!-- II -->
+	<script src="js/d3.min.js"></script>	   <!-- III , IV -->
+	<script src="js/nv.d3.min.js"></script>	   <!-- III , IV -->
+	<script src="js/echarts.min.js"></script>  <!-- VI , VII -->
+	
+	<!-- Get the Font Family -->
+<!-- 	<script src="https://use.typekit.net/hmi0zkl.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>   -->
+  </body>
+</html>
